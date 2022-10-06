@@ -41,7 +41,7 @@ jobs:
       - name: clone openedx-translations
         uses: actions/checkout@v3
         with:
-          repository: openedx/openedx-translations
+          repository: Carlos-Muniz/openedx-translations
           path: openedx-translations
 
       # Copies the generated translation files to the openedx-translations repo
@@ -65,7 +65,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           path: openedx-translations
-          token: ${{ secrets.TRANSLATIONS_TOKEN }}
+          token: ${{ secrets.CREDENTIALS_TOKEN }}
           branch: "automated/generate-translations"
           commit-message: "chore: add updated translation files"
           title: "chore: add updated translation files"
@@ -80,4 +80,4 @@ jobs:
           cd openedx-translations
           gh pr merge ${{ steps.cpr.outputs.pull-request-url }} --merge
         env:
-          GITHUB_TOKEN: ${{ secrets.TRANSLATIONS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CREDENTIALS_TOKEN }}
